@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dc.mapper.CityMapper">
+
+
+    <select id="getCityList" resultType="com.dc.entity.City">
+        SELECT * FROM TEST.city ;
+    </select>
+
+    <select id="getByCityId" parameterType="java.lang.String" resultType="com.dc.entity.City">
+        SELECT * FROM TEST.city where cityId =#{cityId}
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(1) from TEST.city
+    </select>
+
+    <insert id="insert" parameterType="com.dc.entity.City">
+        insert into TEST.city(cityId, cityName, regionId) values (
+            #{vo.cityId},
+            #{vo.cityName},
+            #{vo.regionId}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.dc.entity.City">
+         update TEST.city set
+            cityName =#{vo.cityName},
+            regionId =#{vo.regionId}
+            where  cityId =#{vo.cityId}
+    </update>
+
+    <update id="delete" parameterType="java.lang.String">
+         delete from TEST.city
+            where  cityId =#{cityId}
+    </update>
+
+
+</mapper>
